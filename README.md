@@ -13,7 +13,7 @@ The official HP driver for this model does not natively support macOS Tahoe. Thi
 
 ## Installation
 
-1.  **Download:** Download the latest `HP_P1102w_macOS_Tahoe_Driver.pkg` (or similar name) from the [Releases section](https://github.com/jackcheng/hp-p1102w/releases) of this repository.
+1.  **Download:** Download the latest `HP_P1102w_macOS_Tahoe_Driver.pkg` (or similar name) from the [Releases section](https://github.com/jackcheng/hp-p1102w-tahoe/releases/tag/tahoe-driver) of this repository.
 2.  **Run Installer:** Double-click the downloaded `.pkg` file to launch the installer and follow the on-screen prompts.
 3.  **Add Printer:** After installation, go to `System Settings` > `Printers & Scanners` and add your HP LaserJet Professional P1102w printer.
 
