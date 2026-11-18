@@ -25,7 +25,7 @@ If you're searching for a **P1102w driver for macOS Tahoe**, a **P1102w driver f
 
 1.  **Download:** Download `HP_P1102w_macOS_Driver.pkg` from the [latest release](https://github.com/jackcheng/hp-p1102w-tahoe/releases/latest).
 2.  **Run Installer:** Double-click the downloaded `.pkg` file to launch the installer and follow the on-screen prompts.
-3.  **If macOS blocks the installer:** Because this package isn't signed by HP, macOS may say it "can't be opened" or is from an unidentified developer. To allow it:
+3.  **If macOS blocks the installer:** This is a modified package, not HP's original, so macOS may say it "can't be opened" or is from an unidentified developer. To allow it:
     1. Open **System Settings** > **Privacy & Security**.
     2. Scroll down to the **Security** section, where you'll see a message about the blocked installer.
     3. Click **Open Anyway**, then confirm with your password or Touch ID.
@@ -38,7 +38,7 @@ If you're searching for a **P1102w driver for macOS Tahoe**, a **P1102w driver f
 
 *   [`package/Distribution`](package/Distribution) is the installer definition used in the package. Compared with HP's original, it removes the `InstallationCheck()` script that rejected newer macOS versions.
 *   [`tools/replace_distribution.py`](tools/replace_distribution.py) swaps that file into the package without touching the HP driver payload.
-*   The [release workflow](.github/workflows/release.yml) builds the package and publishes it as a GitHub release. Run it from the **Actions** tab with **Run workflow**.
+*   The [release workflow](.github/workflows/release.yml) builds the package, signs it with a Developer ID Installer certificate and notarizes it with Apple when those secrets are configured, and publishes it as a GitHub release. Run it from the **Actions** tab with **Run workflow**.
 
 ## Disclaimer
 
