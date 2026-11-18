@@ -1,0 +1,53 @@
+name: Build and release driver package
+
+# Rebuilds the installer from the unmodified HP payload with the
+# version-independent Distribution in package/Distribution, then publishes
+# it as a GitHub release. Run it from the Actions tab (Run workflow).
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to create
+        required: true
+        default: macos-driver-v2
+
+permissions:
+  contents: write
+
+env:
+  # The original repackaged installer. Its HP payload is reused byte for byte;
+  # only the Distribution file is replaced.
+  SOURCE_URL: https://github.com/jackcheng/hp-p1102w-tahoe/releases/download/tahoe-driver/HewlettPackardPrinterDrivers-Tahoe.pkg
+  SOURCE_SHA256: 706806403a6309d8a144e98920e41450ba9078176bb2f423d644af3994ba9066
+  OUTPUT: HP_P1102w_macOS_Driver.pkg
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download source package
+        run: |
+          curl -fsSL -o source.pkg "$SOURCE_URL"
+          echo "$SOURCE_SHA256  source.pkg" | sha256sum -c -
+
+      - name: Replace Distribution
+        run: |
+          python3 tools/replace_distribution.py source.pkg package/Distribution "$OUTPUT"
+          sudo apt-get install -y -qq libarchive-tools >/dev/null
+          mkdir check && bsdtar -xf "$OUTPUT" -C check Distribution
+          cmp check/Distribution package/Distribution
+          sha256sum "$OUTPUT" | tee "$OUTPUT.sha256"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          gh release create "$TAG" "$OUTPUT" "$OUTPUT.sha256" \
+            --target "$GITHUB_SHA" \
+            --title "HP P1102w driver for macOS (any version)" \
+            --latest \
+            --notes-file package/RELEASE_NOTES.md
