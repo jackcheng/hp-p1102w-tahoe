@@ -1,14 +1,24 @@
-# HP LaserJet Professional P1102w Driver for Modern macOS
+# HP LaserJet Professional P1102w Driver for macOS Tahoe, Golden Gate and Beyond
 
 ## Overview
 
-This repository provides a community-modified driver package for the **HP LaserJet Professional P1102w** printer that installs on current versions of macOS, including **macOS 26 (Tahoe)**, **macOS 27**, and later releases.
+This repository provides a community-modified driver package for the **HP LaserJet Professional P1102w** printer that installs on current versions of macOS, including **macOS 26 (Tahoe)**, **macOS 27 (Golden Gate)**, and later releases.
 
 HP's official driver package refuses to install on newer macOS releases because its installer checks the macOS version number. This repackage takes the latest official HP driver and replaces only the installer's `Distribution` file with one that has no macOS version check, so the package is no longer tied to a specific macOS version. The driver files themselves are unchanged.
 
+## Supported macOS versions
+
+| macOS version | Supported |
+| --- | --- |
+| macOS 26 Tahoe | Yes |
+| macOS 27 Golden Gate | Yes |
+| Later macOS releases | Yes, the installer has no version check |
+
+If you're searching for a **P1102w driver for macOS Tahoe**, a **P1102w driver for macOS Golden Gate**, or a driver for whatever macOS comes next, this is the same package.
+
 ## Features
 
-*   **Not tied to a macOS version:** The installer no longer checks which version of macOS you're running, so a new macOS release won't block it.
+*   **Not tied to a macOS version:** The installer no longer checks which version of macOS you're running, so a new macOS release (Tahoe, Golden Gate, or anything after) won't block it.
 *   **Based on Latest Official HP Driver:** Ensures you're getting the most up-to-date core driver components from HP, with only the installer check removed.
 
 ## Installation
