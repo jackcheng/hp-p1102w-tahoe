@@ -32,10 +32,10 @@ If you're searching for a **P1102w driver for macOS Tahoe**, a **P1102w driver f
     4. The installer will open. Continue with the on-screen prompts.
 4.  **Add Printer:** After installation, go to **System Settings** > **Printers & Scanners** and add your HP LaserJet Professional P1102w printer.
 
-**Apple silicon Macs need Rosetta.** HP's printing filters are Intel-only, and macOS doesn't always offer to install Rosetta for a driver. Without it, the printer shows **Software Incompatible** and jobs stop with "Data" failed (the CUPS log says `Bad CPU type in executable`). Install Rosetta from Terminal, then remove and re-add the printer:
+**Apple silicon Macs need Rosetta.** HP's printing filters are Intel-only. Upgrading to macOS 27 removes Rosetta and doesn't put it back, and macOS doesn't always offer to install it for a driver. Without it, the printer shows **Software Incompatible** and jobs stop with "Data" failed (the CUPS log says `Bad CPU type in executable`). Install Rosetta from Terminal, then remove and re-add the printer:
 
 ```sh
-softwareupdate --install-rosetta --agree-to-license
+sudo softwareupdate --install-rosetta --agree-to-license
 ```
 
 Apple has said Rosetta will only be generally available through macOS 27, so this driver may stop working on Apple silicon in a later macOS release regardless of how it's packaged.
