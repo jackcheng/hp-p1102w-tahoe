@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<installer-gui-script minSpecVersion="1">
+    <options hostArchitectures="x86_64"/>
+    <title>SU_TITLE</title>
+    <license file="License.rtf"/>
+    <choices-outline>
+        <line choice="manual"/>
+    </choices-outline>
+    <choice id="manual" title="SU_TITLE">
+        <pkg-ref id="HewlettPackardPrinterDrivers" auth="Root" packageIdentifier="com.apple.pkg.HewlettPackardPrinterDrivers">#HewlettPackardPrinterDrivers.pkg</pkg-ref>
+    </choice>
+    <pkg-ref id="HewlettPackardPrinterDrivers" installKBytes="933742" version="10.6.0.1.1.1635454841"/>
+</installer-gui-script>
